@@ -19,6 +19,7 @@ func GetMaxProfit(prices []int) (int, error) {
 		sellPrice := prices[i+1]
 
 		if sellPrice-price > 0 {
+			// Couldn't seem to figure out a better way to check if the minBuyPrice had been set.
 			if minBuyPrice == -1 {
 				minBuyPrice = price
 			}
@@ -28,6 +29,7 @@ func GetMaxProfit(prices []int) (int, error) {
 			}
 
 			currentProfit := sellPrice - minBuyPrice
+			// Couldn't seem to figure out a better way to check if the maxProfit had been set.
 			if maxProfit == -1 {
 				maxProfit = currentProfit
 			}
