@@ -8,7 +8,7 @@ GO 1.13
 
 # To Run
 
-In the root of the repo run `go install`. Then enter `./profiteer`. You will be prompted to enter the stock prices in the following format `1,2,3,4,5`.
+In the root of the repo run `go install`. Then enter `profiteer`. You will be prompted to enter the stock prices in the following format `1,2,3,4,5`.
 
 # To Test
 
