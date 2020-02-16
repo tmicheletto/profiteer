@@ -1,4 +1,4 @@
-package profiteer
+package lib
 
 import "errors"
 

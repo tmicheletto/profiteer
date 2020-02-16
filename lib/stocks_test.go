@@ -1,11 +1,11 @@
-package profiteer_test
+package lib_test
 
 import (
 	"errors"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
-	"github.com/tmicheletto/profiteer"
+	"github.com/tmicheletto/profiteer/lib"
 )
 
 func TestGetMaxProfit(t *testing.T) {
@@ -26,7 +26,7 @@ func TestGetMaxProfit(t *testing.T) {
 	}
 
 	for _, table := range tables {
-		profit, err := profiteer.GetMaxProfit(table.stocks)
+		profit, err := lib.GetMaxProfit(table.stocks)
 
 		assert.Equal(t, err, table.err)
 		assert.Equal(t, profit, table.profit)
