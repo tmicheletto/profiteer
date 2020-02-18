@@ -34,7 +34,7 @@ func main() {
 		return
 	}
 
-	profit, err := lib.GetMaxProfit(prices)
+	profit, err := lib.GetMaxProfit_SingleTransaction(prices)
 	if err != nil {
 		fmt.Printf("Oops something went wrong. %v\n", err)
 		return

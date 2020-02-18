@@ -2,9 +2,7 @@ package lib
 
 import "errors"
 
-//GetMaxProfit returns the maximum profit possible to be made
-//from 1 purchase and 1 sale of a given set of stock prices
-func GetMaxProfit(prices []int) (int, error) {
+func GetMaxProfit_SingleTransaction(prices []int) (int, error) {
 	if len(prices) < 2 {
 		return -1, errors.New("there must be at least 2 prices")
 	}
@@ -37,6 +35,28 @@ func GetMaxProfit(prices []int) (int, error) {
 			if currentProfit > maxProfit {
 				maxProfit = currentProfit
 			}
+		}
+	}
+	return maxProfit, nil
+}
+
+func GetMaxProfit_MultipleTransactions(prices []int) (int, error) {
+	if len(prices) < 2 {
+		return -1, errors.New("there must be at least 2 prices")
+	}
+	maxProfit := 0
+
+	for i, price := range prices[:len(prices)-1] {
+		if price < 0 {
+			return -1, errors.New("stock prices must be positive integers")
+		}
+
+		sellPrice := prices[i+1]
+
+		if sellPrice-price > 0 {
+			currentProfit := sellPrice - price
+
+			maxProfit = maxProfit + currentProfit
 		}
 	}
 	return maxProfit, nil

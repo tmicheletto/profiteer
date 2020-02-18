@@ -8,7 +8,7 @@ import (
 	"github.com/tmicheletto/profiteer/lib"
 )
 
-func TestGetMaxProfit(t *testing.T) {
+func TestGetMaxProfit_SingleTransaction(t *testing.T) {
 	tables := []struct {
 		stocks []int
 		profit int
@@ -26,7 +26,28 @@ func TestGetMaxProfit(t *testing.T) {
 	}
 
 	for _, table := range tables {
-		profit, err := lib.GetMaxProfit(table.stocks)
+		profit, err := lib.GetMaxProfit_SingleTransaction(table.stocks)
+
+		assert.Equal(t, err, table.err)
+		assert.Equal(t, profit, table.profit)
+	}
+}
+
+func TestGetMaxProfit_MultipleTransactions(t *testing.T) {
+	tables := []struct {
+		stocks []int
+		profit int
+		err    error
+	}{
+		{[]int{1}, -1, errors.New("there must be at least 2 prices")},
+		{[]int{-1, 0, 1, 2, 3}, -1, errors.New("stock prices must be positive integers")},
+		{[]int{1, 1}, 0, nil},
+		{[]int{1, 2}, 1, nil},
+		{[]int{7, 5, 3, 6, 9, 4}, 6, nil},
+	}
+
+	for _, table := range tables {
+		profit, err := lib.GetMaxProfit_MultipleTransactions(table.stocks)
 
 		assert.Equal(t, err, table.err)
 		assert.Equal(t, profit, table.profit)
